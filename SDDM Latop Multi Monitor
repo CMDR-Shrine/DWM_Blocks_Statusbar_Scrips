@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Disables either laptop screen or enables it based on connected diplays @ login screen
+
+# Get list of connected monitors
+monitors=$(xrandr --listmonitors | awk '{print $4}')
+
+# Check if DP-2 is connected
+if [[ $monitors == *"DP-2"* ]]; then
+  # Disable DP-4
+  xrandr --output DP-4 --off
+else
+  # Enable DP-4
+  xrandr --output DP-4 --auto
+fi
